@@ -1,0 +1,13 @@
+# Use sudo rights
+sudo: required
+# Install a copy of Docker cli into the container
+services:
+  - docker
+
+# Build image using 'Dockerfile.dev' and tag as marktug/docker-react (will be used instead of container_id)
+before_install:
+  - docker build -t marktug/docker-react f Dockerfile.dev .
+
+# Run test suite - Overide default command with 'npm run test'
+script:
+- docker run -e CI=true marktug/docker-react npm run test
