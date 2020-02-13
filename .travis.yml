@@ -11,3 +11,16 @@ before_install:
 # Run test suite - Overide default command with 'npm run test'
 script:
   - docker run -e CI=true marktug/docker-react npm run test
+
+# Deploy to AWS Elastic Beanstalk
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-west-2"
+  app: "docker-react"
+  env: "DockerReact-env"
+  bucket_name: "elasticbeanstalk-eu-west-2-707685152275"
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
