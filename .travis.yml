@@ -6,7 +6,7 @@ services:
 
 # Build image using 'Dockerfile.dev' and tag as marktug/docker-react (will be used instead of container_id)
 before_install:
-  - docker build -t marktug/docker-react f Dockerfile.dev .
+  - docker build -t marktug/docker-react -f Dockerfile.dev .
 
 # Run test suite - Overide default command with 'npm run test'
 script:
